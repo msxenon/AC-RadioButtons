@@ -1,6 +1,8 @@
 # AC-RadioButtons
 AppChief Radio Buttons a stylish radio group buttons is very easy to use
 Code in XML
+
+
     <com.appchief.msa.radiobuttonx.RadioGroupX
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -9,7 +11,6 @@ Code in XML
         RadioGroupX:default_color="#535353"
         android:id="@+id/radioGroup"
         RadioGroupX:selected_color="@color/colorPrimary">
-
         <TextView
             android:id="@+id/textView"
             android:layout_width="wrap_content"
@@ -28,6 +29,8 @@ Code in XML
             android:layout_height="wrap_content"
             android:text="AppChief 2018/3/21" />
     </com.appchief.msa.radiobuttonx.RadioGroupX>
+    
+    
     
     Using the listener
     RadioGroupX radioGroupX = findViewById(R.id.radioGroup);
