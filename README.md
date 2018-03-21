@@ -35,14 +35,17 @@ AppChief Radio Buttons a stylish radio group buttons is very easy to use
     
     
     
-   **Using the listener**
-    RadioGroupX radioGroupX = findViewById(R.id.radioGroup);
+ **Using the listener**
+ ```
+ RadioGroupX radioGroupX = findViewById(R.id.radioGroup);
         radioGroupX.setRadioGroupSelectListener(new RadioGroupSelectListener() {
             @Override
             public void itemSelected(int newPostion, int oldPosition, int viewId) {
                 
             }
         });
+```	
+	
 **#Installation**
    **Step 1: Add it in your root build.gradle at the end of repositories:**
 
