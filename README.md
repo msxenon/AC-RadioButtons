@@ -1,10 +1,9 @@
 # AC-RadioButtons
 AppChief Radio Buttons a stylish radio group buttons is very easy to use
 
-    ![](https://github.com/msxenon/AC-RadioButtons/blob/master/2018_03_21_22_02_08_1.gif | width=100)
+![alt text](https://github.com/msxenon/AC-RadioButtons/blob/master/2018_03_21_22_02_08_1.gif)
 
-
-Code in XML
+**Code in XML**
 
 
     <com.appchief.msa.radiobuttonx.RadioGroupX
@@ -36,7 +35,7 @@ Code in XML
     
     
     
-    Using the listener
+    **Using the listener**
     RadioGroupX radioGroupX = findViewById(R.id.radioGroup);
         radioGroupX.setRadioGroupSelectListener(new RadioGroupSelectListener() {
             @Override
@@ -44,8 +43,8 @@ Code in XML
                 
             }
         });
-#Installation
-   Step 1: Add it in your root build.gradle at the end of repositories:
+**#Installation**
+   **Step 1: Add it in your root build.gradle at the end of repositories:**
 
 	allprojects {
 		repositories {
@@ -54,7 +53,7 @@ Code in XML
 		}
 	}
     
-    Step 2: Add the dependency
+    **Step 2: Add the dependency**
 
 	dependencies {
 	        compile 'com.github.msxenon:AC-RadioButtons:v1.0'
