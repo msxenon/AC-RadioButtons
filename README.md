@@ -1,7 +1,8 @@
 # AC-RadioButtons
 AppChief Radio Buttons a stylish radio group buttons is very easy to use
 
-https://github.com/msxenon/AC-RadioButtons/blob/master/2018_03_21_22_02_08_1.gif
+    ![](https://github.com/msxenon/AC-RadioButtons/blob/master/2018_03_21_22_02_08_1.gif | width=100)
+
 
 Code in XML
 
