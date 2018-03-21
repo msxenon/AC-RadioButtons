@@ -1,5 +1,8 @@
 # AC-RadioButtons
 AppChief Radio Buttons a stylish radio group buttons is very easy to use
+
+https://github.com/msxenon/AC-RadioButtons/blob/master/2018_03_21_22_02_08_1.gif
+
 Code in XML
 
 
@@ -40,3 +43,18 @@ Code in XML
                 
             }
         });
+#Installation
+   Step 1: Add it in your root build.gradle at the end of repositories:
+
+	allprojects {
+		repositories {
+			...
+			maven { url 'https://jitpack.io' }// add this line 
+		}
+	}
+    
+    Step 2: Add the dependency
+
+	dependencies {
+	        compile 'com.github.msxenon:AC-RadioButtons:v1.0'
+	}
