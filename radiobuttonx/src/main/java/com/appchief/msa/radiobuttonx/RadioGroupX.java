@@ -121,7 +121,7 @@ public class RadioGroupX extends FrameLayout{
                     x.setOnClickListener(new OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            animateChoicer(finalI,view.getId());
+                            animateChoicer(finalI,view.getId(),false);
                         }
                     });
                     x.setTextColor((i==0)?selectedColor:defaultColor);
@@ -153,18 +153,22 @@ public class RadioGroupX extends FrameLayout{
         return isWorking;
     }
 
-    private void animateChoicer(final int pos, final int id) {
+    private void animateChoicer(final int pos, final int id,boolean force) {
         if (isWorking)
             return;
         int newTranslationX = pos * choicer_width;
         int oldTranslationX = choicerPosition * choicer_width;
         int from= oldTranslationX,to = newTranslationX;
-        /*if (pos == 0){
-            from = choicerM;
-            to = 0;
-        }*/
+
          if (choicerPosition == pos)
             return;
+
+         if (force){
+             choicer.setTranslationX(newTranslationX);
+             choicerPosition = pos;
+
+             return;
+         }
         ValueAnimator valueAnimator = ValueAnimator.ofFloat(from,to);
         valueAnimator.setDuration(300);
         valueAnimator.setInterpolator(new BounceInterpolator());
@@ -209,7 +213,19 @@ public class RadioGroupX extends FrameLayout{
 
     }
 
-    private int convertPxToDp(int px){
-        return Math.round(px/(Resources.getSystem().getDisplayMetrics().xdpi/DisplayMetrics.DENSITY_DEFAULT));
+
+    public void setSelectedItem(final int i) {
+        if (linearLayout != null) {
+            animateChoicer(i, linearLayout.getChildAt(i).getId(), true);
+            return;
+        }
+        getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+            @Override
+            public void onGlobalLayout() {
+                RadioGroupX.this.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+                animateChoicer(i,linearLayout.getChildAt(i).getId(),true);
+
+            }
+        });
     }
 }

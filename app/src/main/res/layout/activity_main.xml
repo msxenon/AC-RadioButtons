@@ -8,9 +8,10 @@
     tools:context="com.appchief.msa.customradiobutton.MainActivity">
 
     <com.appchief.msa.radiobuttonx.RadioGroupX
-        android:layout_width="300dp"
-        android:layout_height="40dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
+        android:id="@+id/radioGroup"
         android:layout_centerVertical="true"
         RadioGroupX:default_color="#535353"
         RadioGroupX:selected_color="@color/colorPrimary">
