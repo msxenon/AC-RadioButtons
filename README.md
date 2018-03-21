@@ -35,7 +35,7 @@ AppChief Radio Buttons a stylish radio group buttons is very easy to use
     
     
     
-    **Using the listener**
+   **Using the listener**
     RadioGroupX radioGroupX = findViewById(R.id.radioGroup);
         radioGroupX.setRadioGroupSelectListener(new RadioGroupSelectListener() {
             @Override
@@ -53,7 +53,7 @@ AppChief Radio Buttons a stylish radio group buttons is very easy to use
 		}
 	}
     
-    **Step 2: Add the dependency**
+ **Step 2: Add the dependency**
 
 	dependencies {
 	        compile 'com.github.msxenon:AC-RadioButtons:v1.0'
@@ -63,4 +63,5 @@ AppChief Radio Buttons a stylish radio group buttons is very easy to use
 	
 	
 	
-	[Visit our website at](http://appchief.net)
+[Visit AppChief website](http://appchief.net)
+Thanks ^_^
