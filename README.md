@@ -56,11 +56,10 @@ AppChief Radio Buttons a stylish radio group buttons is very easy to use
 		}
 	}
     
- **Step 2: Add the dependency**
+ **Step 2: Add the dependency**<br/>
+[![](https://jitpack.io/v/msxenon/AC-RadioButtons.svg)](https://jitpack.io/#msxenon/AC-RadioButtons) <-- use this version
+<br/>compile 'com.github.msxenon:AC-RadioButtons:v1.2'
 
-	dependencies {
-	        compile 'com.github.msxenon:AC-RadioButtons:v1.0'
-	}
 	
 	
 	
