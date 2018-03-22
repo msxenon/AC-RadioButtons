@@ -4,23 +4,20 @@ import android.animation.Animator;
 import android.animation.ValueAnimator;
 import android.annotation.TargetApi;
 import android.content.Context;
-import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.os.Build;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.view.animation.BounceInterpolator;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
-import android.widget.TextClock;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -29,17 +26,19 @@ import java.util.List;
 import static android.widget.LinearLayout.HORIZONTAL;
 
 /**
- * Created by mac on 3/21/18.
+ * Created by Mohammed AlFatla on 3/21/18.
  */
 
 public class RadioGroupX extends FrameLayout{
     private int choicer_width;
     private List<TextView> textViews;
     boolean isWorking = false;
-    private LinearLayout choicer;
+    private ImageView choicer;
     private int selectedColor,defaultColor;
     private RadioGroupSelectListener radioGroupSelectListener;
     private LinearLayout linearLayout;
+    private int choicer_drawable;
+    private int choicer_margin = 0;
     public void setRadioGroupSelectListener(RadioGroupSelectListener radioGroupSelectListener){
         this.radioGroupSelectListener = radioGroupSelectListener;
     }
@@ -72,11 +71,12 @@ public class RadioGroupX extends FrameLayout{
         init(context,attrs);
     }
     void init(final Context context,AttributeSet attrs){
-        int[] x = new int[] {R.attr.default_color,R.attr.selected_color};
-        TypedArray a = context.obtainStyledAttributes(attrs, x,0,0);
-        defaultColor = a.getColor(R.styleable.RadioGroupX_default_color,Color.parseColor("#9e9e9e"));
-        selectedColor = a.getColor(R.styleable.RadioGroupX_selected_color,Color.parseColor("#026100"));
-          a.recycle();
+         TypedArray a = context.getTheme().obtainStyledAttributes(attrs, R.styleable.RadioGroupX,0,0);
+        defaultColor = a.getColor(R.styleable.RadioGroupX_default_color,Color.WHITE);
+        selectedColor = a.getColor(R.styleable.RadioGroupX_selected_color,Color.GREEN);
+        choicer_margin =   a.getDimensionPixelSize(R.styleable.RadioGroupX_choicer_margin,0);
+        choicer_drawable = a.getResourceId(R.styleable.RadioGroupX_choicer_drawable,R.drawable.rounded_rect_white);
+        a.recycle();
         this.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
             @Override
             public void onGlobalLayout() {
@@ -103,14 +103,14 @@ public class RadioGroupX extends FrameLayout{
                 linearLayout.requestLayout();
                 int tvWidth = choicer_width ;
                 int padd3 = convertDpToPx(3);
-                int padd1 = convertDpToPx(1);
+                int padd5 = convertDpToPx(5);
                 for (int i =0;i<textViews.size();i++){
                     TextView x = textViews.get(i);
                      LinearLayout.LayoutParams xLayoutParams = new LinearLayout.LayoutParams(tvWidth, ViewGroup.LayoutParams.WRAP_CONTENT);
                     xLayoutParams.weight = 1;
                     xLayoutParams.gravity = Gravity.CENTER;
                      x.setLayoutParams(xLayoutParams);
-                     x.setPadding(padd3,0,padd3,0);
+                     x.setPadding(padd5,0,padd5,0);
                     x.requestLayout();
                     linearLayout.addView(x,xLayoutParams);
                     x.setGravity(Gravity.CENTER);
@@ -124,18 +124,19 @@ public class RadioGroupX extends FrameLayout{
                             animateChoicer(finalI,view.getId(),false);
                         }
                     });
-                    x.setTextColor((i==0)?selectedColor:defaultColor);
+                    x.setTextColor(defaultColor);
                    // Log.e("test",i+" ");
                 }
 
 
-                choicer = new LinearLayout(context);
-                choicer.setLayoutParams(new LayoutParams(choicer_width,getHeight()));
-                choicer.setBackgroundResource(R.drawable.rounded_rect_white);
-
-               // choicer.setPadding(padd1,padd3,padd1,padd3);
+                choicer = new ImageView(context);
+                LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(choicer_width,getHeight());
+                 choicer.setLayoutParams(layoutParams);
+                choicer.setImageResource(choicer_drawable);
+                choicer.setPadding(choicer_margin,choicer_margin,choicer_margin,choicer_margin);
                 addView(choicer,0);
-                //Log.e("test",convertDpToPx(20)+" "+tvWidth+" "+choicer_width);
+                if (choicerPosition==0)
+                    animateChoicer(choicerPosition,0,true);
 
             }
 
@@ -157,19 +158,20 @@ public class RadioGroupX extends FrameLayout{
         if (isWorking)
             return;
         int newTranslationX = pos * choicer_width;
-        int oldTranslationX = choicerPosition * choicer_width;
-        int from= oldTranslationX,to = newTranslationX;
+        int from= choicerPosition * choicer_width;
 
-         if (choicerPosition == pos)
+        if (choicerPosition == pos && !force)
             return;
 
          if (force){
              choicer.setTranslationX(newTranslationX);
-             choicerPosition = pos;
 
+             ((TextView) linearLayout.getChildAt(choicerPosition)).setTextColor(defaultColor);
+             ((TextView) linearLayout.getChildAt(pos)).setTextColor(selectedColor);
+             choicerPosition = pos;
              return;
          }
-        ValueAnimator valueAnimator = ValueAnimator.ofFloat(from,to);
+        ValueAnimator valueAnimator = ValueAnimator.ofFloat(from, newTranslationX);
         valueAnimator.setDuration(300);
         valueAnimator.setInterpolator(new BounceInterpolator());
         valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {

@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <declare-styleable name="RadioGroupX">
-        <attr name="selected_color" format="color" />
-        <attr name="default_color" format="color" />
-     </declare-styleable>
+        <attr name="selected_color" format="color|reference" />
+        <attr name="default_color" format="color|reference" />
+        <attr name="choicer_margin" format="dimension" />
+        <attr name="choicer_drawable" format="reference" />
+
+    </declare-styleable>
 
 </resources>

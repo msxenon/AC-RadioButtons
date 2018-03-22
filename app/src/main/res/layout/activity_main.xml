@@ -8,13 +8,15 @@
     tools:context="com.appchief.msa.customradiobutton.MainActivity">
 
     <com.appchief.msa.radiobuttonx.RadioGroupX
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
         android:id="@+id/radioGroup"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        RadioGroupX:default_color="#535353"
-        RadioGroupX:selected_color="@color/colorPrimary">
+        android:background="@drawable/rounded_rect_colored"
+        RadioGroupX:choicer_margin="5dp"
+        RadioGroupX:default_color="#000000"
+        RadioGroupX:selected_color="#ff00bb">
 
         <TextView
             android:id="@+id/textView"
@@ -32,7 +34,7 @@
             android:id="@+id/textView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="AppChief 2018/3/21" />
+            android:text="AppChief 2018 22 of march" />
     </com.appchief.msa.radiobuttonx.RadioGroupX>
 
 </RelativeLayout>
